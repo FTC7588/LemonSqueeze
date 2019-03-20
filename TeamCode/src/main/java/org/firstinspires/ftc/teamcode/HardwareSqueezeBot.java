@@ -57,24 +57,22 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
  * Servo channel:  Servo to move left claw: "leftClaw"
  * Servo channel:  Servo to move right claw: "rightClaw"
  */
-public class HardwareRoverBot
+public class HardwareSqueezeBot
 {
     /* Public OpMode members. */
     public DcMotor  rearLeftDrive   = null;
     public DcMotor  rearRightDrive  = null;
     public DcMotor  frontLeftDrive  = null;
     public DcMotor  frontRightDrive  = null;
-    public DcMotor  climber = null;
-    public Servo    markerArm = null;
-    public BNO055IMU imu = null;
+    //public BNO055IMU imu = null;
 
-    static final double MID_SERVO = 0.5 ;
+   // static final double MID_SERVO = 0.5 ;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
 
     /* Constructor */
-    public HardwareRoverBot(){
+    public HardwareSqueezeBot(){
 
     }
 
@@ -87,7 +85,7 @@ public class HardwareRoverBot
          *         Define and Initialize Motors
          */
 
-        markerArm = hwMap.get(Servo.class, "markerArm");
+
 
         /**
          *         Define and Initialize Motors
@@ -97,20 +95,20 @@ public class HardwareRoverBot
         rearRightDrive  = hwMap.get(DcMotor.class, "rearRightDrive");
         frontLeftDrive  = hwMap.get(DcMotor.class, "frontLeftDrive");
         frontRightDrive = hwMap.get(DcMotor.class, "frontRightDrive");
-        climber =hwMap.get(DcMotor.class, "climber");
+
 
         rearLeftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rearRightDrive.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         frontLeftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
-        climber.setDirection(DcMotor.Direction.FORWARD);
+
 
         // Set all motors to zero power
         rearLeftDrive.setPower(0);
         rearRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
         frontRightDrive.setPower(0);
-        climber.setPower(0);
+
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -118,13 +116,12 @@ public class HardwareRoverBot
         rearRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        climber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         rearLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        climber.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         /**
          *         Define and initialize sensors
@@ -133,19 +130,19 @@ public class HardwareRoverBot
         // Set up the parameters with which we will use our IMU. Note that integration
         // algorithm here just reports accelerations to the logcat log; it doesn't actually
         // provide positional information.
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
-        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
-        parameters.loggingEnabled      = true;
-        parameters.loggingTag          = "IMU";
-        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+        //BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        //parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        //parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        //parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
+        //parameters.loggingEnabled      = true;
+        //parameters.loggingTag          = "IMU";
+        //parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
 
         // Retrieve and initialize the IMU. We expect the IMU to be attached to an I2C port
         // on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
         // and named "imu".
-        imu = hwMap.get(BNO055IMU.class, "imu");
-        imu.initialize(parameters);
+        //imu = hwMap.get(BNO055IMU.class, "imu");
+        //imu.initialize(parameters);
     }
  }
 
